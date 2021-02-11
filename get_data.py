@@ -5,6 +5,8 @@ import wget
 url ='https://shrutideveloper.s3.amazonaws.com/yshdbyj6zy-1.zip'
 zip_name = "data.zip"
 
+print(url)
+
 wget.download(url, zip_name)
 
 #Now we will unzip the file
