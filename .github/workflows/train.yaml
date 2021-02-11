@@ -1,22 +1,32 @@
-name: farmers
-on: [push]
+# This workflow will build a Java project with Gradle
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
+
+name: Riun an ML Pipeline
+
+on:
+  push:
+    branches: [ master ]
+
 jobs:
-  run:
-    runs-on: [ubuntu-latest]
+  pipeline:
+    runs-on: ubuntu-latest
     container: docker://dvcorg/cml-py3:latest
+
     steps:
-      - uses: actions/checkout@v2
-      - name: cml_run
-        env:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          pip install -r requirements.txt
-          dvc repro 
+    - uses: actions/checkout@v2
+    - name: cml_run
+      env:
+        repo_token: ${{secrets.GITHUB_TOKEN}}
+      run: |
+        pip install -r requirements.txt
+        dvc repro
 
-          git fetch --prune
-          dvc metrics diff --show-md master > report.md
+        git fetch --prune
+        dvc metrics diff --show-md master > report.md
 
-          # Add figure to the report
-          echo "## Validating results by region" >> report.md
-          cml-publish by_region.png --md >> report.md
-          cml-send-comment report.md
+
+        # Add figure to the report
+        echo "## Validating results by region" >> report.md
+        cml-publish by_region.png --md >> report.md
+        cml-send-comment report.md
+
