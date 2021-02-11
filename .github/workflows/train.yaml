@@ -3,9 +3,7 @@
 
 name: Run an ML Pipeline
 
-on: 
-  push:
-    branches: [master]
+on: [push]
 
 jobs:
   pipeline:
