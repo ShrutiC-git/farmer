@@ -3,7 +3,9 @@
 
 name: Riun an ML Pipeline
 
-on: [push]
+on: 
+  push:
+    branches: [master]
 
 jobs:
   pipeline:
