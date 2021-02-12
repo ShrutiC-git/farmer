@@ -15,8 +15,8 @@ df = pd.read_csv("data_processed.csv")
 
 #### Get features ready to model!
 y = df.pop("cons_general").to_numpy()
-y[y< 4] = 0
-y[y>= 4] = 1
+y[y< 5] = 0
+y[y>= 5] = 1
 
 X = df.to_numpy()
 X = preprocessing.scale(X) # Is standard
@@ -29,7 +29,7 @@ X = imp.transform(X)
 
 # Linear model
 clf = QuadraticDiscriminantAnalysis()
-yhat = cross_val_predict(clf, X, y, cv=4)
+yhat = cross_val_predict(clf, X, y, cv=6)
 
 acc = np.mean(yhat==y)
 tn, fp, fn, tp = confusion_matrix(y, yhat).ravel()
