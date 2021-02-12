@@ -24,6 +24,8 @@ jobs:
    # needs: job1
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: cml_run
         env:
           repo_token: ${{secrets.GITHUB_TOKEN}}
