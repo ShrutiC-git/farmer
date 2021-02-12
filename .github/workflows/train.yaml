@@ -23,20 +23,20 @@ jobs:
     container: docker://dvcorg/cml-py3:latest
    # needs: job1
     steps:
-      - uses: actions/checkout@v2
-        with:
+    - uses: actions/checkout@v2
+      with:
           fetch-depth: 0
-      - name: cml_run
-        env:
+    - name: cml_run
+      env:
           repo_token: ${{secrets.GITHUB_TOKEN}}
-        run: |
+      run: |
           pip install -r requirements.txt
           
           dvc repro
 
           git fetch --prune
 
-          dvc metrics diff --show-md master > report.md
+          dvc metrics diff --show-md experiment-1 > report.md
 
           cml-publish by_region.png --md > report.md
           cml-send-comment report.md
