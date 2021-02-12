@@ -22,6 +22,8 @@ jobs:
         git fetch --prune
         echo "### Comparison with Master" >> report.md
         dvc metrics diff --show-md master > report.md
+        dvc metrics diff --show-md script > report.md
+        
 
 
         # Add figure to the report
