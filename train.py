@@ -29,7 +29,7 @@ X = imp.transform(X)
 
 # Linear model
 clf = QuadraticDiscriminantAnalysis()
-yhat = cross_val_predict(clf, X, y, cv=6)
+yhat = cross_val_predict(clf, X, y, cv=5)
 
 acc = np.mean(yhat==y)
 tn, fp, fn, tp = confusion_matrix(y, yhat).ravel()
