@@ -33,7 +33,8 @@ jobs:
           dvc repro
 
           git fetch --prune
+          echo $(git fetch --prune)
           dvc metrics diff --show-md master > report.md
 
-          cml-publish by_region.png --md >report.md
+          cml-publish by_region.png --md > report.md
           cml-send-comment report.md
