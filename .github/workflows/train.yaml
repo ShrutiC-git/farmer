@@ -20,11 +20,14 @@ jobs:
         dvc repro
 
         git fetch --prune
+        echo "### Comparison with Master" >> report.md
         dvc metrics diff --show-md master > report.md
+        echo "### Comparison with Script Branch" >> report.md
+        dvc metrics diff --show-md script > report.md
 
 
         # Add figure to the report
-        echo "## Validating results by region" >> report.md
-        cml-publish by_region.png --md >> report.md
+        echo "## Validating results by region" > report.md
+        cml-publish by_region.png --md > report.md
         cml-send-comment report.md
 
