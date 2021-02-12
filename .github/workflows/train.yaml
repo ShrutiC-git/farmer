@@ -18,8 +18,8 @@ jobs:
       run: |
         sudo bash ./script.sh
         chmod +rx script.sh
-        var_c=$(./script.sh)
-        echo $var_c
+        var_custom=$(./script.sh)
+        echo $var_custom
         pip install -r requirements.txt
         dvc repro
         git fetch --prune
